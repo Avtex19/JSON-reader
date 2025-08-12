@@ -35,7 +35,6 @@ def main():
     }
     exporter = exporters[args.format]
 
-    # Ensure outputs are saved under output/ directory
     output_dir = os.path.join(os.getcwd(), "output")
     os.makedirs(output_dir, exist_ok=True)
     output_file_name = os.path.basename(args.output)
