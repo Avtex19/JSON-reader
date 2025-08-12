@@ -1,4 +1,5 @@
 import argparse
+import os
 
 from data_combiner import DataCombiner
 from data_loader import JsonDataLoader
@@ -33,9 +34,16 @@ def main():
         "xml": XmlExporter(),
     }
     exporter = exporters[args.format]
-    exporter.export(combined, args.output)
 
-    print(f"Data combined and exported successfully to {args.output}")
+    # Ensure outputs are saved under output/ directory
+    output_dir = os.path.join(os.getcwd(), "output")
+    os.makedirs(output_dir, exist_ok=True)
+    output_file_name = os.path.basename(args.output)
+    output_path = os.path.join(output_dir, output_file_name)
+
+    exporter.export(combined, output_path)
+
+    print(f"Data combined and exported successfully to {output_path}")
 
 
 if __name__ == "__main__":
