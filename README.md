@@ -34,18 +34,25 @@ A Python application that combines room and student data from JSON files and exp
 ```
 JSON-reader/
 ├── main.py                 # Main application entry point
-├── models.py              # Data models (Student, Room)
-├── data_loader.py         # Data loading functionality
-├── data_combiner.py       # Data combination logic
+├── models/                 # Data models
+│   ├── __init__.py
+│   └── models.py          # Student and Room data models
+├── data_methods/          # Data processing functionality
+│   ├── __init__.py
+│   ├── data_loader.py     # Data loading functionality
+│   ├── data_combiner.py   # Data combination logic
+│   └── data_processor.py  # Data processing utilities
 ├── exporter/              # Export functionality
 │   ├── __init__.py
 │   ├── base.py           # Abstract exporter base class
 │   ├── json_exporter.py  # JSON export implementation
 │   └── xml_exporter.py   # XML export implementation
-├── students.json          # Sample student data
-├── rooms.json            # Sample room data
-├── combined.json         # Sample JSON output
-├── combined.xml          # Sample XML output
+├── examples_json/         # Sample input data
+│   ├── students.json     # Sample student data
+│   └── rooms.json        # Sample room data
+├── output/               # Generated output files
+│   ├── combined.json     # Sample JSON output
+│   └── combined.xml      # Sample XML output
 └── README.md            # This file
 ```
 
@@ -69,12 +76,12 @@ python3 main.py --rooms ROOMS_FILE --students STUDENTS_FILE --format {json,xml} 
 
 **Export as JSON:**
 ```bash
-python3 main.py --rooms rooms.json --students students.json --format json --output output.json
+python3 main.py --rooms examples_json/rooms.json --students examples_json/students.json --format json --output combined.json
 ```
 
 **Export as XML:**
 ```bash
-python3 main.py --rooms rooms.json --students students.json --format xml --output output.xml
+python3 main.py --rooms examples_json/rooms.json --students examples_json/students.json --format xml --output combined.xml
 ```
 
 **View help:**
@@ -174,4 +181,19 @@ The application follows SOLID principles and clean architecture:
 - **Interface Segregation**: Clean, focused interfaces
 - **Dependency Inversion**: High-level modules depend on abstractions
 
+## Testing
 
+The application has been tested with:
+- Valid JSON input files
+- Both JSON and XML export formats
+- Command-line argument parsing
+- Error handling for missing files
+- Data combination logic
+
+## Sample Data
+
+The repository includes sample data files:
+- `examples_json/students.json`: Contains 10,000+ student records
+- `examples_json/rooms.json`: Contains 1,000 room records
+- `output/combined.json`: Sample JSON output
+- `output/combined.xml`: Sample XML output

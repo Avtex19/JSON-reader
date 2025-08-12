@@ -1,8 +1,8 @@
 import argparse
 import os
 
-from data_combiner import DataCombiner
-from data_loader import JsonDataLoader
+from data_methods.data_combiner import DataCombiner
+from data_methods.data_loader import JsonDataLoader
 from exporter.json_exporter import JsonExporter
 from exporter.xml_exporter import XmlExporter
 from models import Room, Student
