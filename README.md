@@ -34,12 +34,20 @@ A Python application that combines room and student data from JSON files and exp
 ```
 JSON-reader/
 ├── main.py                 # Main application entry point
+├── constants/              # Application constants and enums
+│   ├── __init__.py
+│   └── constants.py
+├── cli/                    # Command-line interface configuration
+│   ├── __init__.py
+│   └── cli.py
 ├── models/                 # Data models
 │   ├── __init__.py
 │   └── models.py          # Student and Room data models
+├── loader/                # Data loading functionality
+│   ├── __init__.py
+│   └── data_loader.py     # Data loading implementations
 ├── data_methods/          # Data processing functionality
 │   ├── __init__.py
-│   ├── data_loader.py     # Data loading functionality
 │   ├── data_combiner.py   # Data combination logic
 │   └── data_processor.py  # Data processing utilities
 ├── exporter/              # Export functionality
@@ -161,14 +169,20 @@ The application follows SOLID principles and clean architecture:
    - `Student`: Represents student data
    - `Room`: Represents room data with associated students
 
-2. **Data Loading** (`data_loader.py`)
+2. **Data Loading** (`loader/data_loader.py`)
    - `DataLoader`: Abstract base class for data loading
    - `JsonDataLoader`: Concrete implementation for JSON files
 
-3. **Data Processing** (`data_combiner.py`)
+3. **Data Processing** (`data_methods/data_combiner.py`)
    - `DataCombiner`: Combines room and student data
 
-4. **Data Export** (`exporter/`)
+4. **CLI Configuration** (`cli/cli.py`)
+   - Centralized argument parsing and CLI setup
+
+5. **Constants and Enums** (`constants/constants.py`)
+   - Shared enums, directory names, messages, and other constants
+
+6. **Data Export** (`exporter/`)
    - `Exporter`: Abstract base class for data export
    - `JsonExporter`: JSON export implementation
    - `XmlExporter`: XML export implementation

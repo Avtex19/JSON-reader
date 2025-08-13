@@ -1,6 +1,6 @@
 from data_combiner import DataCombiner
-from data_loader import DataLoader
 from exporter.base import Exporter
+from loader.data_loader import DataLoader
 
 
 class DataProcessor:
