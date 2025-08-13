@@ -1,4 +1,5 @@
 from typing import List
+from collections import defaultdict
 from models import Student, Room
 
 
@@ -9,9 +10,12 @@ class DataCombiner:
 
     def combine(self) -> List[Room]:
         room_dict = {room.id: room for room in self.rooms}
+        room_students = defaultdict(list)
 
         for student in self.students:
-            if student.room in room_dict:
-                room_dict[student.room].students.append(student)
+            room_students[student.room].append(student)
+
+        for room in room_dict.values():
+            room.students = room_students[room.id]
 
         return list(room_dict.values())
